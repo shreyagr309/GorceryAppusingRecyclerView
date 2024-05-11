@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements ItemClickListener
 {
 
     RecyclerView recyclerView;
@@ -48,8 +50,31 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(customAdapterRecyclerView);
 
 
+        customAdapterRecyclerView.setClickListener(this);//passing the instance of main activity
+                                                            //since, main activity is implementing the ItemClickListener Interface
+
+
+
 
     }
 
 
+    @Override
+    public void onCLick(View v, int position)
+    {
+
+        if(list.get(position).getTitle()=="Beverage"){
+
+            Toast.makeText(this,"Okay Bev.",Toast.LENGTH_LONG).show();
+
+        }
+
+        else if(list.get(position).getTitle()=="Bread")
+        {
+
+            Toast.makeText(this,"Okay Bread",Toast.LENGTH_LONG).show();
+
+        }
+
+    }
 }
